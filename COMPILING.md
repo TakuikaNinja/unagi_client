@@ -17,5 +17,6 @@ make -f Makefile.unix
 ```
 
 For Debian-based systems, the dependencies are `libsquirrel-dev libusb-dev libwxgtk3.2-dev`
-Due to packaging differences, the "include" symlink and anago.mk -I/-l flags must be changed to reference Squirrel's includes directory and version number.
+
+Due to packaging differences, the "include" symlink and anago.mk `-I/-l` flags must be changed to reference Squirrel's includes directory and version number.
 
