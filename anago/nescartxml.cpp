@@ -36,7 +36,7 @@ bool RomDb::Generate(void)
 		wxXmlNode *cartridge = game->GetChildren();
 		while(cartridge != NULL){
 			wxString crcstr;
-			if(cartridge->GetPropVal(wxT("crc"), &crcstr) == true){
+			if(cartridge->GetAttribute(wxT("crc"), &crcstr) == true){
 				unsigned long crc;
 				if(crcstr.ToULong(&crc, 0x10) == true){
 					(*m_hash)[crc] = cartridge;
@@ -51,8 +51,8 @@ bool RomDb::Generate(void)
 	while(parts != NULL){
 		wxString name = parts->GetName();
 		if(name == wxT("prg") || name == wxT("chr")){
-			*log << parts->GetPropVal(wxT("name"), wxT(""));
-			*log << parts->GetPropVal(wxT("crc"), wxT("xx")) << wxT("\n");
+			*log << parts->GetAttribute(wxT("name"), wxT(""));
+			*log << parts->GetAttribute(wxT("crc"), wxT("xx")) << wxT("\n");
 		}
 		parts = parts->GetNext();
 	}*/
@@ -68,15 +68,15 @@ void RomDb::Search(unsigned long crc, wxTextCtrl *log) const
 	wxXmlNode *game = cartridge->GetParent();
 	const wxString error = wxT("*error*");
 	wxString field, name;
-	if(game->GetPropVal(wxT("altname"), &name) == false){
-		name = game->GetPropVal(wxT("name"), error);
+	if(game->GetAttribute(wxT("altname"), &name) == false){
+		name = game->GetAttribute(wxT("name"), error);
 	}
 	field = wxT("name:") + name;
 	*log << field << wxT("\n");
 	
-	field = wxT("region:") + game->GetPropVal(wxT("region"), error);
-	field += wxT(" catalog:") + game->GetPropVal(wxT("catalog"), error);
-	field += wxT(" revision:") + cartridge->GetPropVal(wxT("revision"), wxT("(none)"));
+	field = wxT("region:") + game->GetAttribute(wxT("region"), error);
+	field += wxT(" catalog:") + game->GetAttribute(wxT("catalog"), error);
+	field += wxT(" revision:") + cartridge->GetAttribute(wxT("revision"), wxT("(none)"));
 	*log << field << wxT("\n");
 }
 

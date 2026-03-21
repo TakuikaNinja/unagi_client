@@ -36,10 +36,10 @@ HSQUIRRELVM qr_open(const struct textcontrol *p)
 {
 	HSQUIRRELVM v = sq_open(0x400);
 	if(p == NULL){
-		sq_setprintfunc(v, print_stdout);
+		sq_setprintfunc(v, print_stdout, NULL);
 	}else{
 		sq_setforeignptr(v, (SQUserPointer) p);
-		sq_setprintfunc(v, print_other);
+		sq_setprintfunc(v, print_other, NULL);
 	}
 	sq_pushroottable(v);
 	sqstd_register_iolib(v);

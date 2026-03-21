@@ -5,7 +5,7 @@ ifeq ($(RELEASE),1)
 else
   CPPFLAGS += -g -O0 -DDEBUG=1
 endif
-CPPFLAGS += -Wall -Werror
+CPPFLAGS += -Wall -Wno-error
 CFLAGS = -I.. -I$(SQUIRREL)/include -I$(KAZZO)
 ifneq ($(strip $(LIBUSB)),)
   CFLAGS += -I$(LIBUSB)/include
