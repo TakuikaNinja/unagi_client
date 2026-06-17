@@ -1,6 +1,6 @@
 # Anago CLI compilation on Arch Linux
 
-Dependencies: `squirrel libusb wxwidgets-gtk3`
+Dependencies: `squirrel libusb wxwidgets-gtk3` (might need `libusb0` too?)
 
 ```bash
 mkdir Anago0.6.2
